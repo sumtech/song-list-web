@@ -1,0 +1,35 @@
+<h1>Arrangement</h1>
+
+<div *ngIf="arrangement">
+    <h3>{{arrangement.name}}</h3>
+    <h4 *ngIf="arrangementView === 1">Lyrics</h4>
+    <h4 *ngIf="arrangementView === 2">Chords</h4>
+    <h4 *ngIf="arrangementView === 3">Contents</h4>
+
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary"
+                [class.active]="arrangementView === 1"
+                (click)="arrangementView = 1">
+            Lyrics
+        </button>
+        <button type="button" class="btn btn-primary"
+                [class.active]="arrangementView === 2"
+                (click)="arrangementView = 2">
+            Chords
+        </button>
+        <button type="button" class="btn btn-primary"
+                [class.active]="arrangementView === 3"
+                (click)="arrangementView = 3">
+            Contents
+        </button>
+    </div>
+
+    <!-- Lyrics -->
+    <div class="lyrics" *ngIf="arrangementView === 1" [innerHTML]="arrangement.lyrics"></div>
+
+    <!-- Chords -->
+    <div class="chords" *ngIf="arrangementView === 2" [innerHTML]="arrangement.chords"></div>
+
+    <!-- Raw Contents -->
+    <pre class="contents" *ngIf="arrangementView === 3" [innerHTML]="arrangement.contents"></pre>
+</div>

@@ -1,0 +1,18 @@
+.chords {
+    line-height: 2.5em;
+    font-family: "Lucida Console", Monaco, monospace;
+    white-space: pre;
+
+    /deep/ .chord-wrapper {
+        display: inline-block;
+        position: relative;
+        line-height: 1em;
+
+        .chord {
+            display: inline-block;
+            position: absolute;
+            bottom: 1em;
+            font-weight: bold;
+        }
+    }
+}

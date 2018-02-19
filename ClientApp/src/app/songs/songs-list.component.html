@@ -1,0 +1,30 @@
+<div class="container">
+    <h1>Songs</h1>
+
+    <div class="row">
+        <div class="col-6"><strong>Title / Album / First Line</strong></div>
+        <div class="col-3"><strong>Writers / Artists</strong></div>
+        <div class="col-3"><strong>Arrangements</strong></div>
+    </div>
+    <div class="row bg-light rounded mt-1" *ngFor="let song of songs">
+        <div class="col-6">
+            <h3>
+                <a [routerLink]="['/songs/edit/' + song.id]">{{song.title}}</a>
+            </h3>
+            <div>
+                <span *ngIf="song.album">{{song.album}}</span>
+                <span *ngIf="song.copyrightYear"> ({{song.copyrightYear}})</span>
+            </div>
+            <h4 *ngIf="song.firstLine">{{song.firstLine}}</h4>
+        </div>
+        <div class="col-3">
+            <div *ngFor="let artist of song.artists">{{artist.name}}</div>
+            <hr class="m-2"
+                *ngIf="song.writers.length && song.artists.length" />
+            <div *ngFor="let writer of song.writers">{{writer.name}}</div>
+        </div>
+        <div class="col-3">
+            <div *ngFor="let arrangement of song.arrangements"><a [routerLink]="['/arrangements/' + arrangement.id]">{{arrangement.name}}</a></div>
+        </div>
+    </div>
+</div>
