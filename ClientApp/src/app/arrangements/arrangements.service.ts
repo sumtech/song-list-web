@@ -25,7 +25,7 @@ export class ArrangementsService {
     constructor(
         private http: HttpClient,
     ) {
-        let baseApiUrl = 'http://localhost:62311/api/';
+        let baseApiUrl = 'http://localhost:11111/api/';
         this.baseApiUrl = baseApiUrl + 'arrangements/';
     }
 
