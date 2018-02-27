@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { Song } from './songs.model';
 import { SongsService } from './songs.service';
@@ -17,10 +18,13 @@ export class SongsEditComponent implements OnInit {
     /**
      * Constructor.
      * @constructor
+     * @param route
+     * @param router
      * @param service
      */
     constructor(
         private route: ActivatedRoute,
+        private router: Router,
         private service: SongsService
     ) { }
 
@@ -31,5 +35,15 @@ export class SongsEditComponent implements OnInit {
         const id: number = +this.route.snapshot.paramMap.get('id');
         this.service.getSong(id)
             .subscribe(song => this.song = song);
+    }
+
+    /**
+     * Save changes to the song.
+     */
+    onSubmit(): void {
+        this.service.saveSong(this.song)
+            .subscribe(() => {
+                this.router.navigate(['/songs']);
+            });
     }
 }

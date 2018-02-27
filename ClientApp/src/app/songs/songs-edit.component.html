@@ -1,46 +1,101 @@
-<h1>Song</h1>
+<div class="container">
+    <h1>Song</h1>
 
-<form *ngIf="song">
-    <!-- ID -->
-    <div class="form-group">
-        <label for="song-id">Id</label>
-        <input type="text" class="form-control" id="song-id" placeholder="{{song.id}}" readonly>
-        <input type="hidden" name="id" [value]="song.id" />
-    </div>
+    <form *ngIf="song" (ngSubmit)="onSubmit()" #songForm="ngForm">
+        <!-- ID -->
+        <div class="form-group">
+            <label for="song-id">Id</label>
+            <input type="text" class="form-control" id="song-id" placeholder="{{song.id}}" readonly>
+            <input type="hidden" name="id" [value]="song.id" />
+        </div>
 
-    <!-- Title -->
-    <div class="form-group">
-        <label for="song-title">Title</label>
-        <input type="text" class="form-control" id="song-title" name="title" placeholder="Title" [(ngModel)]="song.title" />
-    </div>
+        <!-- Title -->
+        <div class="form-group">
+            <label for="song-title">Title</label>
+            <input type="text" class="form-control" id="song-title" name="title" placeholder="Title" [(ngModel)]="song.title" required />
+        </div>
 
-    <!-- Album -->
-    <div class="form-group">
-        <label for="song-album">Album</label>
-        <input type="text" class="form-control" id="song-album" name="album" placeholder="album" [(ngModel)]="song.album" />
-    </div>
+        <!-- Album -->
+        <div class="form-group">
+            <label for="song-album">Album</label>
+            <input type="text" class="form-control" id="song-album" name="album" placeholder="album" [(ngModel)]="song.album" />
+        </div>
 
-    <!-- Copyright Year -->
-    <div class="form-group">
-        <label for="song-copyright-year">Copyright Year</label>
-        <input type="text" class="form-control" id="song-copyright-year" name="copyrightYear" placeholder="Copyright year" [(ngModel)]="song.copyrightYear" />
-    </div>
+        <!-- Copyright Year -->
+        <div class="form-group">
+            <label for="song-copyright-year">Copyright Year</label>
+            <input type="text" class="form-control" id="song-copyright-year" name="copyrightYear" placeholder="Copyright year" [(ngModel)]="song.copyrightYear" />
+        </div>
 
-    <!-- First Line -->
-    <div class="form-group">
-        <label for="song-first-line">First Line</label>
-        <input type="text" class="form-control" id="song-first-line" name="firstLine" placeholder="First line..." [(ngModel)]="song.firstLine" />
-    </div>
+        <!-- First Line -->
+        <div class="form-group">
+            <label for="song-first-line">First Line</label>
+            <input type="text" class="form-control" id="song-first-line" name="firstLine" placeholder="First line..." [(ngModel)]="song.firstLine" required />
+        </div>
 
-    <!-- Artists -->
-    <div class="form-group">
-        <label for="song-artists">Artists</label>
+        <!-- Save -->
+        <div class="form-group">
+            <button type="submit" class="btn btn-default" [disabled]="!songForm.form.valid">Save</button>
+        </div>
 
-    </div>
+        <!-- Artists -->
+        <div class="form-group">
+            <label for="song-artists">Artists</label>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item list-group-item-action"
+                    *ngFor="let artist of song.artists">{{artist.name}}</li>
+            </ul>
+            <div class="alert alert-info"
+                 *ngIf="!song.artists.length">No artists.</div>
+        </div>
 
-    <!-- Writers -->
-    <div class="form-group">
-        <label for="song-writers">Writers</label>
+        <!-- Writers -->
+        <div class="form-group">
+            <label for="song-writers">Writers</label>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item list-group-item-action"
+                    *ngFor="let writer of song.writers">{{writer.name}}</li>
+            </ul>
+            <div class="alert alert-info"
+                 *ngIf="!song.writers.length">No writers.</div>
+        </div>
 
-    </div>
-</form>
+        <!-- References -->
+        <div class="form-group">
+            <label for="song-references">References</label>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item list-group-item-action"
+                    *ngFor="let reference of song.references">{{reference}}</li>
+            </ul>
+            <div class="alert alert-info"
+                 *ngIf="!song.references.length">No references.</div>
+        </div>
+
+        <!-- Arrangements -->
+        <div class="form-group">
+            <label for="song-arrangements">Arrangements</label>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item list-group-item-action"
+                    *ngFor="let arrangement of song.arrangements">{{arrangement.name}}</li>
+            </ul>
+            <div class="alert alert-info"
+                 *ngIf="!song.arrangements.length">No arrangements.</div>
+        </div>
+
+        <!-- Key -->
+        <div class="form-group">
+            <label for="song-writers">Original Key</label>
+
+        </div>
+
+        <div class="form-group">
+            <label for="song-writers">Key Range</label>
+
+        </div>
+
+        <div class="form-group">
+            <label for="song-writers">Recommended Keys</label>
+
+        </div>
+    </form>
+</div>
